@@ -14,12 +14,31 @@ NOTES:
 */
 
 #include <stdio.h>
-
+#include<string.h>
 struct student {
 	char name[10];
 	int score;
 };
 
 void * scoresDescendingSort(struct student *students, int len) {
-	return NULL;
+	int i, j, temp;
+	char tempn[10];
+	if (students == NULL || len <= 0)
+		return NULL;
+	for (i = 0; i <len; i++)
+	{
+		for (j = 0; j <len-i; j++)
+		{
+			if (students[j].score < students[j + 1].score)
+			{
+				temp = students[j].score;
+				students[j].score = students[j + 1].score;
+				students[j + 1].score = temp;
+				strcpy(tempn, students[j].name);
+				strcpy(students[j].name, students[j + 1].name);
+				strcpy(students[j + 1].name, tempn);
+			}
+		}
+	}
+	return students;
 }
